@@ -50,8 +50,10 @@ else if (d==3)
     cout <<"jesli gracz trafi na dobre pole, wowczas na tym polu pojawii sie znak '1'\n";
     cout <<"natomiast, jesli gracz trafi na zle pole pojawii sie znak 'X'\n";
     cout <<"istnieje rowniez 10% szans na trafienie pola o nazwie bomba, opisanego znakiem 'B'\n";
-    cout <<"gracz ma 4 zycia, a do wygranej musi zdobyc 3 punkty.\n";
+    cout <<"gracz ma prawo do 15 b³edow, a do wygranej musi zdobyc 10 punktow.\n";
     cout <<"za kazde dobre pole gracz zdobywa punkt, natomiast za kazde zle pole gracz traci zycie, natomiast za trafienie na pole B, gracz natychmiastowo przegrywa.\n";
+    cout <<"jesli gracz trafi na dobre pole, i postanowi wybrac jakiekolwiek inne pole bedace obok dobrego pola, i bedzie ono polem dobrym, gracz otrzyma 2 punkty.\n";
+     cout <<"jesli pole bedzie natomiast zle, gracz otrzyma 5 punktow blednych.\n";
     cout <<endl;
     cout <<"1 - zacznij gre.\n";
     cout <<"2 - informacje o autorze.\n";
@@ -148,46 +150,91 @@ while (x>10 || x<1)
 }
 }
 while (y==tempx && x==tempy);
-if (t[x-1][y-1]>=5 && x==tempy && y==tempx-1)
+
+if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy && y==tempx-1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy && y==tempx+1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
+{
+liczn=liczn+5;
+a[x-1][y-1] = 'X';
+}
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
 }
-else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx)
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
 }
-else if (t[x-1][y-1]>=5 && x==tempy && y==tempx+1)
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
 }
-else if (t[x-1][y-1]>=5 && x==tempy+1 && y==tempx)
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
 }
-else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx-1)
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
 }
-else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx-1)
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
-}else if (t[x-1][y-1]>=5 && x==tempy+1 && y==tempx-1)
-{
-liczy=liczy+2;
-a[x-1][y-1] = '1';
-}
-else if (t[x-1][y-1]>=5 && x==tempy+1 && y==tempx+1)
+}else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
 }
-else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx+1)
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
 liczy=liczy+2;
 a[x-1][y-1] = '1';
@@ -215,7 +262,7 @@ tempy = x;
 cout <<"twoja obecna liczba punktow to: "<<liczy<<endl;
 cout <<"twoja obecna liczba bledow to: "<<liczn<<endl;
 }
-while (liczn!=10 && liczy!=6);
+while (liczn<=15 && liczy<=10);
 system("cls");
 cout << "   1 2 3 4 5 6 7 8 9 10"<<endl;
 for (int i=0; i <10; i++)
@@ -252,11 +299,11 @@ else
     cout <<endl;
 }
 cout <<endl;
-if (liczn==10)
+if (liczn=15)
 {
     cout <<"P R Z E G R A N A";
 }
-else if (liczy==6)
+else if (liczy==10)
 {
     cout <<"W Y G R A N A";
 }
