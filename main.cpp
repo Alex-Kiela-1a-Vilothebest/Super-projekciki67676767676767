@@ -93,9 +93,18 @@ if (licz2 == 0)
     }
 }
 }
-
+cout<< "   1 2 3 4 5 6 7 8 9 10"<<endl;
 for (int i=0; i <10; i++)
 {
+if (i!=9)
+{
+    cout <<i+1<<"  ";
+}
+else
+{
+    cout <<i+1<<" ";
+}
+
     for (int j=0; j<10; j++)
     {
         if (a[i][j] == 'X')
@@ -121,26 +130,69 @@ for (int i=0; i <10; i++)
 do
 {
 
-    cout <<"wybierz wspolzedne x :";
-cin >>x;
-
-while (x>10 || x<1)
-{
-    cout <<"wybierz wspolzedne x :";
-    cin >>x;
-}
-cout <<"wybierz wspolzedne y :";
+    cout <<"wybierz wspolzedne x: ";
 cin >>y;
 
 while (y>10 || y<1)
 {
-    cout <<"wybierz wspolzedne y :";
+    cout <<"wybierz wspolzedne x: ";
     cin >>y;
 }
-}
-while (x==tempx && y==tempy);
+cout <<"wybierz wspolzedne y: ";
+cin >>x;
 
-if (t[x-1][y-1]>=5)
+while (x>10 || x<1)
+{
+    cout <<"wybierz wspolzedne y: ";
+    cin >>x;
+}
+}
+while (y==tempx && x==tempy);
+if (t[x-1][y-1]>=5 && x==tempy && y==tempx-1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy && y==tempx+1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy+1 && y==tempx)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx-1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx-1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}else if (t[x-1][y-1]>=5 && x==tempy+1 && y==tempx-1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy+1 && y==tempx+1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5 && x==tempy-1 && y==tempx+1)
+{
+liczy=liczy+2;
+a[x-1][y-1] = '1';
+}
+else if (t[x-1][y-1]>=5)
 {
     liczy++;
     a[x-1][y-1] = '1';
@@ -154,19 +206,29 @@ else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1)
 }
 else if (t[x-1][y-1]==1)
 {
-    liczn = 4;
+    liczn = 10;
     a[x-1][y-1] = 'B';
 }
 licz2++;
-tempx = x;
-tempy = y;
+tempx = y;
+tempy = x;
 cout <<"twoja obecna liczba punktow to: "<<liczy<<endl;
 cout <<"twoja obecna liczba bledow to: "<<liczn<<endl;
 }
-while (liczn!=4 && liczy!=3);
+while (liczn!=10 && liczy!=6);
 system("cls");
+cout << "   1 2 3 4 5 6 7 8 9 10"<<endl;
 for (int i=0; i <10; i++)
 {
+    if (i!=9)
+{
+    cout <<i+1<<"  ";
+}
+else
+{
+    cout <<i+1<<" ";
+}
+
     for (int j=0; j<10; j++)
     {
         if (a[i][j] == 'X')
@@ -190,11 +252,11 @@ for (int i=0; i <10; i++)
     cout <<endl;
 }
 cout <<endl;
-if (liczn==4)
+if (liczn==10)
 {
     cout <<"P R Z E G R A N A";
 }
-else if (liczy==3)
+else if (liczy==6)
 {
     cout <<"W Y G R A N A";
 }
