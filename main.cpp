@@ -253,7 +253,7 @@ else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1)
 }
 else if (t[x-1][y-1]==1)
 {
-    liczn = 10;
+    liczn = 15;
     a[x-1][y-1] = 'B';
 }
 licz2++;
@@ -262,7 +262,7 @@ tempy = x;
 cout <<"twoja obecna liczba punktow to: "<<liczy<<endl;
 cout <<"twoja obecna liczba bledow to: "<<liczn<<endl;
 }
-while (liczn<=15 && liczy<=10);
+while (liczn<15 && liczy<10);
 system("cls");
 cout << "   1 2 3 4 5 6 7 8 9 10"<<endl;
 for (int i=0; i <10; i++)
@@ -299,11 +299,11 @@ else
     cout <<endl;
 }
 cout <<endl;
-if (liczn=15)
+if (liczn>=15)
 {
     cout <<"P R Z E G R A N A";
 }
-else if (liczy==10)
+else if (liczy>=10)
 {
     cout <<"W Y G R A N A";
 }
