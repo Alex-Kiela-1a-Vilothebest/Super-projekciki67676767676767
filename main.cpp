@@ -1,11 +1,15 @@
 #include <iostream>
 #include <random>
+#include <thread>
+#include <chrono>
+#include <conio.h>
+
 using namespace std;
 int t[10][10];
 char a[10][10];
 int main()
 {
-int liczn=0,liczy=0,x,y,licz2=0,tempx,tempy,d;
+int liczn=0,liczy=0,x,y,licz2=0,tempx,tempy,d,czas=2,litera;
 cout <<"********************************"<<endl;
 cout <<"*  =   =  =====  =   =  =   =  *"<<endl;
 cout <<"*  == ==  =      ==  =  =   =  *"<<endl;
@@ -47,10 +51,10 @@ else if (d==3)
  system("cls");
     cout <<"na poczadku gry wyswietla sie plansza.\n";
     cout <<"zadaniem gracza jest podanie wspolzednych pola, ktore chce wybrac.\n";
-    cout <<"jesli gracz trafi na dobre pole, wowczas na tym polu pojawii sie znak '1'\n";
-    cout <<"natomiast, jesli gracz trafi na zle pole pojawii sie znak 'X'\n";
+    cout <<"jesli gracz trafi na dobre pole, wowczas rozpocznie sie odliczanie 2 sekundowe odliczanie \nzadaniem gracza bedzie wcisniecie klaiwsza 'y'.\njesli mu sie to uda, uzyska wowczas 2 punkty, a jesli nacisnie inny klawisz,lub upłynie czas, nic sie nie stanie,\npo odliczantym polu pojawii sie znak '1'\n";
+    cout <<"natomiast, jesli gracz trafi na zle polen rowniez rozpocznie sie odliczanie, tym razem jednak zadaniem gracza bed  pojawii sie znak 'X'\n";
     cout <<"istnieje rowniez 10% szans na trafienie pola o nazwie bomba, opisanego znakiem 'B'\n";
-    cout <<"gracz ma prawo do 15 b�edow, a do wygranej musi zdobyc 10 punktow.\n";
+    cout <<"gracz ma prawo do 15 b³edow, a do wygranej musi zdobyc 10 punktow.\n";
     cout <<"za kazde dobre pole gracz zdobywa punkt, natomiast za kazde zle pole gracz traci zycie, natomiast za trafienie na pole B, gracz natychmiastowo przegrywa.\n";
     cout <<"jesli gracz trafi na dobre pole, i postanowi wybrac jakiekolwiek inne pole bedace obok dobrego pola, i bedzie ono polem dobrym, gracz otrzyma 2 punkty.\n";
      cout <<"jesli pole bedzie natomiast zle, gracz otrzyma 5 punktow blednych.\n";
@@ -153,107 +157,857 @@ while (a[x-1][y-1]=='1' || a[x-1][y-1]=='X');
 
 if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
+
 a[x-1][y-1] = 'X';
+    cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
+
 }
+
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
-liczn=liczn+5;
+
 a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
+    a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+5;
+            }
 liczn=liczn+5;
-a[x-1][y-1] = 'X';
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+5;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 }
+
+
+
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+
 a[x-1][y-1] = '1';
+    cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy+1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5 && t[x-1][y-1]!=1 && x==tempy-1 && y==tempx+1 && t[tempy-1][tempx-1]>=5)
 {
-liczy=liczy+2;
+cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+4;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]>=5)
 {
-    liczy++;
+ cout << "Nacisnij 'y' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak == 'y')
+            {
+        liczy=liczy+2;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
     a[x-1][y-1] = '1';
 }
 else if (t[x-1][y-1]<5 && t[x-1][y-1]!=1)
 {
-    {
-    liczn++;
+
     a[x-1][y-1] = 'X';
+cout << "Nacisnij 'x' w ciagu 2 sekund!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'x')
+            {
+        liczn=liczn+2;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 2 - sekundy << " sekund   ";
+
+        if (sekundy >= 2)
+        {
+liczn=liczn+2;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
     }
-}
+    }
+
 else if (t[x-1][y-1]==1)
 {
-    liczn = 15;
+   cout << "Nacisnij 'B' w ciagu 1 sekundy!\n";
+
+    auto start = chrono::steady_clock::now();
+
+    while (true)
+    {
+
+        if (_kbhit())
+        {
+            char znak = _getch();
+
+            if (znak != 'B')
+            {
+        liczn=liczn+10000;
+            }
+
+            break;
+        }
+
+        auto teraz = chrono::steady_clock::now();
+
+        auto sekundy = chrono::duration_cast<chrono::seconds>(
+            teraz - start
+        ).count();
+
+        cout << "\rPozostalo: " << 1 - sekundy << " sekund   ";
+
+        if (sekundy >= 1)
+        {
+liczn=liczn+10000;
+            break;
+        }
+
+
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
     a[x-1][y-1] = 'B';
 }
 licz2++;
