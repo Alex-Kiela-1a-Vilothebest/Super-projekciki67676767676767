@@ -149,7 +149,7 @@ while (x>10 || x<1)
     cin >>x;
 }
 }
-while (y==tempx && x==tempy);
+while (a[x-1][y-1]=='1' || a[x-1][y-1]=='X');
 
 if (t[x-1][y-1]<5 && t[x-1][y-1]!=1 && x==tempy && y==tempx-1 && t[tempy-1][tempx-1]>=5)
 {
